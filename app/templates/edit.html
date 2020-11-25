@@ -1,16 +1,16 @@
 {% extends "layout.html" %}
 {% block content %}
-<form action="/edit/{{sl.GameNumber}}" method="post">
+<form action="/edit/{{a.GameNumber}}" method="post">
     <div class="row">
         <div class="col">
             <label for="GameNumber">Game Number</label>
             <input id="GameNumber" type="text" class="form-control" placeholder="GameNumber"
-                   name="GameNumber" value="{{sl.GameNumber}}">
+                   name="GameNumber" value="{{a.GameNumber}}">
         </div>
         <div class="col">
             <label for="GameLength">Game Length</label>
             <input id="GameLength" type="text" class="form-control" placeholder="GameLength"
-                   name="GameLength" value="{{sl.GameLength}}">
+                   name="GameLength" value="{{a.GameLength}}">
         </div>
     </div>
     <button type="submit" class="btn btn-success">Submit</button>
