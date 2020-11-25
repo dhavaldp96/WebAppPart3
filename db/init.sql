@@ -5,7 +5,7 @@ use Snakes_Ladders;
 CREATE TABLE IF NOT EXISTS tblsnldImport
 (`GameNumber` int AUTO_INCREMENT,`GameLength` NUMERIC(5), PRIMARY KEY (`GameNumber`));
 
-INSERT INTO tblsnldImport VALUES
+INSERT INTO tblsnldImport (GameNumber, GameLength) VALUES
     (1,30),
     (2,29),
     (3,31),

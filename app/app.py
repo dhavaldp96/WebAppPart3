@@ -22,7 +22,7 @@ def index():
     cursor = mysql.get_db().cursor()
     cursor.execute('SELECT * FROM tblsnldImport')
     result = cursor.fetchall()
-    #print(result[1])
+    # print(result[0])
     return render_template('index.html', title='Home', user=user, result=result)
 
 
@@ -39,7 +39,7 @@ def form_edit_get(sc_id):
     cursor = mysql.get_db().cursor()
     cursor.execute('SELECT * FROM tblsnldImport WHERE GameNumber=%s', sc_id)
     result = cursor.fetchall()
-    print(result[1])
+    # print(result[1])
     return render_template('edit.html', title='Edit Form', result=result[0])
 
 
@@ -51,6 +51,7 @@ def form_update_post(sc_id):
     cursor.execute(sql_update_query, inputData)
     mysql.get_db().commit()
     return redirect("/", code=302)
+
 
 @app.route('/Snakes_Ladders/new', methods=['GET'])
 def form_insert_get():
@@ -65,6 +66,7 @@ def form_insert_post():
     cursor.execute(sql_insert_query, inputData)
     mysql.get_db().commit()
     return redirect("/", code=302)
+
 
 @app.route('/delete/<int:sc_id>', methods=['POST'])
 def form_delete_post(sc_id):
