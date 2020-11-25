@@ -9,10 +9,10 @@
         <li class="list-group-item">{{ a.GameLength }}</li>
     </ul>
     <div class="card-body">
-        <a href="/edit/{{a.GameNumber}}" class="card-link btn btn-primary">edit</a>
+        <a href="/edit/{{result.GameNumber}}" class="card-link btn btn-primary">edit</a>
     </div>
 </div>
-<form action="/delete/{{a.GameNumber}}" method="post">
+<form action="/delete/{{result.GameNumber}}" method="post">
 
     <button type="submit" class="btn btn-danger">Delete</button></form>
 

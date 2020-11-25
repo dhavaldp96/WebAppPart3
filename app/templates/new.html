@@ -1,12 +1,15 @@
 {% extends "layout.html" %}
 {% block content %}
 
-<form action="/Snakes_Ladders/new" method="POST">
+<form action="/result/new" method="POST">
     <div class="row">
         <div class="col">
             <label for="GameNumber">Game Number</label>
             <input id="GameNumber" type="number" class="form-control" placeholder="Game Number" name="GameNumber">
         </div>
+    </div>
+
+    <div class="row">
         <div class="col">
             <label for="GameLength">Game Length</label>
             <input id="GameLength" type="number" class="form-control" placeholder="Game Length" name="GameLength">
