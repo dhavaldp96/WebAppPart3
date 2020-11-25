@@ -18,100 +18,100 @@ mysql.init_app(app)
 
 @app.route('/', methods=['GET'])
 def index():
-    user = {'username': 'scores Project'}
+    user = {'username': 'Snakes and Ladders Project'}
     cursor = mysql.get_db().cursor()
-    cursor.execute('SELECT * FROM Snakes_Ladders')
+    cursor.execute('SELECT * FROM tblsnldImport')
     result = cursor.fetchall()
     print(result[0])
-    return render_template('index.html', title='Home', user=user, scores=result)
+    return render_template('index.html', title='Home', user=user, result=result)
 
 
-@app.route('/view/<int:GameNumber>', methods=['GET'])
-def record_view(GameNumber):
+@app.route('/view/<int:sc_id>', methods=['GET'])
+def record_view(sc_id):
     cursor = mysql.get_db().cursor()
-    cursor.execute('SELECT * FROM Snakes_Ladders WHERE id=%s', sc_id)
+    cursor.execute('SELECT * FROM tblsnldImport WHERE GameNumber=%s', sc_id)
     result = cursor.fetchall()
-    return render_template('view.html', title='View', score=result[0])
+    return render_template('view.html', title='View Form', result=result[0])
 
 
-@app.route('/edit/<int:GameNumber>', methods=['GET'])
-def form_edit_get(GameNumber):
+@app.route('/edit/<int:sc_id>', methods=['GET'])
+def form_edit_get(sc_id):
     cursor = mysql.get_db().cursor()
-    cursor.execute('SELECT * FROM Snakes_Ladders WHERE id=%s', GameNumber)
+    cursor.execute('SELECT * FROM tblsnldImport WHERE GameNumber=%s', sc_id)
     result = cursor.fetchall()
     print(result[0])
-    return render_template('edit.html', title='Edit', score=result[0])
+    return render_template('edit.html', title='Edit Form', result=result[0])
 
 
-@app.route('/edit/<int:GameNumber>', methods=['POST'])
-def form_update_post(GameNumber):
+@app.route('/edit/<int:sc_id>', methods=['POST'])
+def form_update_post(sc_id):
     cursor = mysql.get_db().cursor()
-    inputData = (request.form.get('GameNumber'), request.form.get('GameLength'))
-    sql_update_query = """UPDATE Snakes_Ladders t SET t.GameNumber = %s, t.GameLength = %s"""
+    inputData = (request.form.get('GameNumber'), request.form.get('GameLength'), sc_id)
+    sql_update_query = """UPDATE tblsnldImport t SET t.GameNumber = %i, t.GameLenght = %i WHERE t.GameNumber = %s """
     cursor.execute(sql_update_query, inputData)
     mysql.get_db().commit()
     return redirect("/", code=302)
 
-@app.route('/scores/new', methods=['GET'])
+@app.route('/Snakes_Ladders/new', methods=['GET'])
 def form_insert_get():
     return render_template('new.html', title='New')
 
 
-@app.route('/scores/new', methods=['POST'])
+@app.route('/Snakes_Ladders/new', methods=['POST'])
 def form_insert_post():
     cursor = mysql.get_db().cursor()
-    inputData = (request.form.get('GameNumber'), request.form.get('GameLenght'))
-    sql_insert_query = """INSERT INTO Snakes_Ladders (GameNumber,GameLength) VALUES (%s, %s) """
+    inputData = (request.form.get('GameNumber'), request.form.get('GameLength'))
+    sql_insert_query = """INSERT INTO tblsnldImport (GameNumber, GameLength) VALUES (%s, %s)"""
     cursor.execute(sql_insert_query, inputData)
     mysql.get_db().commit()
     return redirect("/", code=302)
 
-@app.route('/delete/<int:GameNumber>', methods=['POST'])
+@app.route('/delete/<int:sc_id>', methods=['POST'])
 def form_delete_post(sc_id):
     cursor = mysql.get_db().cursor()
-    sql_delete_query = """DELETE FROM Snakes_Ladders WHERE GameNumber = %s """
-    cursor.execute(sql_delete_query, GameNumber)
+    sql_delete_query = """DELETE FROM tblsnldImport WHERE GameNumber = %s """
+    cursor.execute(sql_delete_query, sc_id)
     mysql.get_db().commit()
     return redirect("/", code=302)
 
 
-@app.route('/api/v1/scores', methods=['GET'])
+@app.route('/api/v1/Snakes_Ladders', methods=['GET'])
 def api_browse() -> str:
     cursor = mysql.get_db().cursor()
-    cursor.execute('SELECT * FROM Snakes_Ladders')
+    cursor.execute('SELECT * FROM tblsnldImport')
     result = cursor.fetchall()
     json_result = json.dumps(result);
     resp = Response(json_result, status=200, mimetype='application/json')
     return resp
 
 
-@app.route('/api/v1/scores/<int:GameNumber>', methods=['GET'])
-def api_retrieve(GameNumber) -> str:
+@app.route('/api/v1/Snakes_Ladders/<int:sc_id>', methods=['GET'])
+def api_retrieve(sc_id) -> str:
     cursor = mysql.get_db().cursor()
-    cursor.execute('SELECT * FROM Snakes_Ladders WHERE id=%s', GameNumber)
+    cursor.execute('SELECT * FROM tblsnldImport WHERE GameNumber=%s', sc_id)
     result = cursor.fetchall()
     json_result = json.dumps(result);
     resp = Response(json_result, status=200, mimetype='application/json')
     return resp
 
 
-@app.route('/api/v1/scores/', methods=['POST'])
+@app.route('/api/v1/Snakes_Ladders/', methods=['POST'])
 def api_add() -> str:
     resp = Response(status=201, mimetype='application/json')
     return resp
 
 
-@app.route('/api/v1/scores/<int:GameNumber>', methods=['PUT'])
-def api_edit(GameNumber) -> str:
+@app.route('/api/v1/Snakes_Ladders/<int:sc_id>', methods=['PUT'])
+def api_edit(sc_id) -> str:
     resp = Response(status=201, mimetype='application/json')
     return resp
 
 
-@app.route('/api/v1/scores/<int:sc_id>', methods=['DELETE'])
-def api_delete(GameNumber) -> str:
+@app.route('/api/v1/Snakes_Ladders/<int:sc_id>', methods=['DELETE'])
+def api_delete(sc_id) -> str:
     cursor = mysql.get_db().cursor()
-    sql_delete_query = """DELETE FROM Snakes_Ladders WHERE GameNumber = %s """
-    cursor.execute(sql_delete_query, GameNumber)
+    sql_delete_query = """DELETE FROM tblsnldImport WHERE GameNumber = %s """
+    cursor.execute(sql_delete_query, sc_id)
     mysql.get_db().commit()
     resp = Response(status=200, mimetype='application/json')
     return resp
@@ -119,3 +119,4 @@ def api_delete(GameNumber) -> str:
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
+

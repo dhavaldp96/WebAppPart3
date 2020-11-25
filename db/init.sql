@@ -2,7 +2,7 @@ CREATE DATABASE Snakes_Ladders;
 
 use Snakes_Ladders;
 
-CREATE TABLE IF NOT EXISTS tblsnldImport (`GameNumber` NUMERIC(3),`GameLength` NUMERIC(5));
+CREATE TABLE IF NOT EXISTS tblsnldImport(`GameNumber` int AUTO_INCREMENT,`GameLength` NUMERIC(5), PRIMARY KEY (`GameNumber`));
 
 INSERT INTO tblsnldImport VALUES
     (1,30),
