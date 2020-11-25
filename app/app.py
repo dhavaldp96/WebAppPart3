@@ -22,7 +22,7 @@ def index():
     cursor = mysql.get_db().cursor()
     cursor.execute('SELECT * FROM tblsnldImport')
     result = cursor.fetchall()
-    print(result[0])
+    print(result[1])
     return render_template('index.html', title='Home', user=user, result=result)
 
 
@@ -39,7 +39,7 @@ def form_edit_get(sc_id):
     cursor = mysql.get_db().cursor()
     cursor.execute('SELECT * FROM tblsnldImport WHERE GameNumber=%s', sc_id)
     result = cursor.fetchall()
-    print(result[0])
+    print(result[1])
     return render_template('edit.html', title='Edit Form', result=result[0])
 
 
