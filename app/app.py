@@ -12,7 +12,7 @@ app.config['MYSQL_DATABASE_HOST'] = 'db'
 app.config['MYSQL_DATABASE_USER'] = 'root'
 app.config['MYSQL_DATABASE_PASSWORD'] = 'root'
 app.config['MYSQL_DATABASE_PORT'] = 3306
-app.config['MYSQL_DATABASE_DB'] = 'scores'
+app.config['MYSQL_DATABASE_DB'] = 'Snakes_Ladders'
 mysql.init_app(app)
 
 
@@ -47,7 +47,7 @@ def form_edit_get(sc_id):
 def form_update_post(sc_id):
     cursor = mysql.get_db().cursor()
     inputData = (request.form.get('GameNumber'), request.form.get('GameLength'), sc_id)
-    sql_update_query = """UPDATE tblsnldImport t SET t.GameNumber = %i, t.GameLenght = %i WHERE t.GameNumber = %s """
+    sql_update_query = """UPDATE tblsnldImport t SET t.GameNumber = %s, t.GameLenght = %s WHERE t.GameNumber = %s """
     cursor.execute(sql_update_query, inputData)
     mysql.get_db().commit()
     return redirect("/", code=302)
@@ -119,4 +119,3 @@ def api_delete(sc_id) -> str:
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
-
