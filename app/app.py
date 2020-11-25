@@ -22,7 +22,7 @@ def index():
     cursor = mysql.get_db().cursor()
     cursor.execute('SELECT * FROM tblsnldImport')
     result = cursor.fetchall()
-    print(result[1])
+    #print(result[1])
     return render_template('index.html', title='Home', user=user, result=result)
 
 
