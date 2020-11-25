@@ -1,55 +1,20 @@
 {% extends "layout.html" %}
 {% block content %}
-<form action="/edit/{{score.id}}" method="post">
+<form action="/edit/{{sl.GameNumber}}" method="post">
     <div class="row">
         <div class="col">
-            <label for="fldLName">Last Name</label>
-            <input id="fldLName" type="text" class="form-control" placeholder="fldLName"
-                   name="fldLName" value="{{score.fldLName}}">
+            <label for="GameNumber">Game Number</label>
+            <input id="GameNumber" type="text" class="form-control" placeholder="GameNumber"
+                   name="GameNumber" value="{{sl.GameNumber}}">
         </div>
         <div class="col">
-            <label for="fldFName">First Name</label>
-            <input id="fldFName" type="text" class="form-control" placeholder="fldFName"
-                   name="fldFName" value="{{score.fldFName}}">
-        </div>
-        <div class="ssn">
-            <label for="ssn">ssn </label>
-            <input id="ssn" type="text" class="form-control" placeholder="ssn"
-                   name="ssn" value="{{score.ssn}}">
-        </div>
-        <div class="col">
-            <label for="test1">Test 1 Scores</label>
-            <input id="test1" type="text" class="form-control" placeholder="Test 1 Scores"
-                   name="test1" value="{{score.test1}}">
-        </div>
-        <div class="col">
-            <label for="test1">Test 2 Scores</label>
-            <input id="test2" type="text" class="form-control" placeholder="Test 2 Scores"
-                   name="test2" value="{{score.test2}}">
-        </div>
-        <div class="col">
-            <label for="test3">Test 3 Scores</label>
-            <input id="test3" type="text" class="form-control" placeholder="Test 3 Scores"
-                   name="test3" value="{{score.test3}}">
-        </div>
-        <div class="col">
-            <label for="test4">Test 4 Scores</label>
-            <input id="test4" type="text" class="form-control" placeholder="Test 4 Scores"
-                   name="test4" value="{{score.test4}}">
-        </div>
-        <div class="col">
-            <label for="final">final scores</label>
-            <input id="final" type="text" class="form-control" placeholder="final" name="final" value="{{score.final}}">
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col">
-            <label for="grade">grade</label>
-            <input id="grade" type="text" class="form-control" placeholder="grade" name="grade" value="{{score.grade}}">
+            <label for="GameLength">Game Length</label>
+            <input id="GameLength" type="text" class="form-control" placeholder="GameLength"
+                   name="GameLength" value="{{sl.GameLength}}">
         </div>
     </div>
     <button type="submit" class="btn btn-success">Submit</button>
 
 </form>
 {% endblock %}
+

@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block content %}
+<table class="table">
+    <thead>
+    <tr>
+
+        <th scope="col">Game Number</th>
+        <th scope="col">Game Length</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for score in scores %}
+    <tr>
+        <td><a href="view/{{sl.GameNumber}}">{{ sl.GameNumber }}</a></td>
+        <td>{{ sl.GameNumber }}</td>
+        <td>{{ sl.GameLength }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

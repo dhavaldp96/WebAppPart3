@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="card" class="m-5 p-2">
+    <h5 class="card-title">{{ sl.GameNumber }} {{ sl.GameLength }} Details</h5>
+
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">GameNumber: {{ sl.GameNumber }}</li>
+        <li class="list-group-item">GameLength: {{ sl.GameLength }}</li>
+    </ul>
+    <div class="card-body">
+        <a href="/edit/{{sl.GameNumber}}" class="card-link btn btn-primary">edit</a>
+    </div>
+</div>
+<form action="/delete/{{sl.GameNumber}}" method="post"><button type="submit" class="btn btn-danger">Delete</button></form>
+
+
+{% endblock %}
+
