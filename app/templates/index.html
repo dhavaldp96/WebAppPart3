@@ -11,9 +11,9 @@
     <tbody>
     {% for a in result %}
     <tr>
-        <td><a href="view/{{sl.GameNumber}}">{{ sl.GameNumber }}</a></td>
-        <td>{{ sl.GameNumber }}</td>
-        <td>{{ sl.GameLength }}</td>
+        <td><a href="view/{{a.GameNumber}}">{{ a.GameNumber }}</a></td>
+        <td>{{ a.GameNumber }}</td>
+        <td>{{ a.GameLength }}</td>
     </tr>
     {% endfor %}
     </tbody>
