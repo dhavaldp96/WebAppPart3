@@ -1,11 +1,11 @@
-CREATE DATABASE Snakes_Ladders;
+CREATE DATABASE SnakLad;
 
-use Snakes_Ladders;
+use SnakLad;
 
-CREATE TABLE IF NOT EXISTS tblsnldImport
-(`GameNumber` int AUTO_INCREMENT,`GameLength` NUMERIC(5), PRIMARY KEY (`GameNumber`));
+CREATE TABLE IF NOT EXISTS tblslimp
+(`GNum` int AUTO_INCREMENT,`GLen` NUMERIC(5), PRIMARY KEY (`GNum`));
 
-INSERT INTO tblsnldImport (GameNumber, GameLength) VALUES
+INSERT INTO tblslimp (GNum, GLen) VALUES
     (1,30),
     (2,29),
     (3,31),
