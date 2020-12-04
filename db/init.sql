@@ -5,6 +5,7 @@ use SnakLad;
 CREATE TABLE IF NOT EXISTS tblslimp
 (`GNum` int AUTO_INCREMENT,`GLen` NUMERIC(5), PRIMARY KEY (`GNum`));
 
+
 INSERT INTO tblslimp (GNum, GLen) VALUES
     (1,30),
     (2,29),
