@@ -1,6 +1,6 @@
-CREATE DATABASE SnakLad;
+CREATE DATABASE Snakes_Ladders;
 
-use SnakLad;
+use Snakes_Ladders;
 
 CREATE TABLE IF NOT EXISTS tblslimp
 (`GNum` int AUTO_INCREMENT,`GLen` NUMERIC(5), PRIMARY KEY (`GNum`));
