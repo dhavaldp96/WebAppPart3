@@ -46,8 +46,8 @@ def form_edit_get(res_GameNumber):
 @app.route('/edit/<int:res_GameNumber>', methods=['POST'])
 def form_update_post(res_GameNumber):
     cursor = mysql.get_db().cursor()
-    inputData = (request.form.get('res.GameNumber'), request.form.get('res.GameLength'), res_GameNumber)
-    sql_update_query = """UPDATE tblsnldImport t SET t.GameNumber = %s, t.GameLength = %s WHERE t.GameNumber = %s"""
+    inputData = (request.form.get('GameNumber'), request.form.get('GameLength'), res_GameNumber)
+    sql_update_query = """UPDATE tblsnldImport t SET t.GameLength = %s WHERE t.id = %s """
     cursor.execute(sql_update_query, inputData)
     mysql.get_db().commit()
     return redirect("/", code=302)
