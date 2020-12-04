@@ -47,7 +47,7 @@ def form_edit_get(res_GameNumber):
 def form_update_post(res_GameNumber):
     cursor = mysql.get_db().cursor()
     inputData = (request.form.get('GameNumber'), request.form.get('GameLength'), res_GameNumber)
-    sql_update_query = """UPDATE tblsnldImport t SET t.GameLength = %s, t.GameNumber = %s WHERE t.GameNumber = %s """
+    sql_update_query = """UPDATE tblsnldImport t SET t.GameNumber = %s, t.GameLength = %s WHERE t.GameNumber = %s """
     cursor.execute(sql_update_query, inputData)
     mysql.get_db().commit()
     return redirect("/", code=302)
