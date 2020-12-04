@@ -38,7 +38,7 @@ def record_view(res_GameNumber):
 @app.route('/edit/<int:res_GameNumber>', methods=['GET'])
 def form_edit_get(res_GameNumber):
     cursor = mysql.get_db().cursor()
-    cursor.execute('SELECT * FROM tblsnldImport WHERE GameNumber=%s,GameLength=%s', res_GameNumber)
+    cursor.execute('SELECT * FROM tblsnldImport WHERE GameNumber=%s, res_GameNumber)
     result = cursor.fetchall()
     print(result[0])
     return render_template('edit.html', title='Edit Form', res=result[0])
@@ -48,7 +48,7 @@ def form_edit_get(res_GameNumber):
 def form_update_post(res_GameNumber):
     cursor = mysql.get_db().cursor()
     inputData = (request.form.get('res.GameNumber'), request.form.get('res.GameLength'), res_GameNumber)
-    sql_update_query = """UPDATE tblsnldImport t SET t.GameNumber = %s, t.GameLength = %s WHERE t.GameNumber = %s """
+    sql_update_query = """UPDATE tblsnldImport t SET t.GameNumber = %s, t.GameLength = %s WHERE t.GameNumber = %s"""
     cursor.execute(sql_update_query, inputData)
     mysql.get_db().commit()
     return redirect("/", code=302)
