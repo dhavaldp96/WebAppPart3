@@ -23,7 +23,7 @@ def index():
     cursor.execute('SELECT * FROM tblsnldImport')
     result = cursor.fetchall()
     print(result[0])
-    return render_template('index.html', title='Home', user=user, result=result)
+    return render_template('index.html', title='Home', user=user, results=result)
 
 
 @app.route('/view/<int:res_GameNumber>', methods=['GET'])
@@ -32,7 +32,7 @@ def record_view(res_GameNumber):
     cursor.execute('SELECT * FROM tblsnldImport WHERE GameNumber=%s', res_GameNumber)
     result = cursor.fetchall()
     print(result[0])
-    return render_template('view.html', title='View Form', result=result[0])
+    return render_template('view.html', title='View Form', res=result[0])
 
 
 @app.route('/edit/<int:res_GameNumber>', methods=['GET'])
@@ -41,7 +41,7 @@ def form_edit_get(res_GameNumber):
     cursor.execute('SELECT * FROM tblsnldImport WHERE GameNumber=%s', res_GameNumber)
     result = cursor.fetchall()
     print(result[1])
-    return render_template('edit.html', title='Edit Form', result=result[0])
+    return render_template('edit.html', title='Edit Form', res=result[0])
 
 
 @app.route('/edit/<int:res_GameNumber>', methods=['POST'])
@@ -54,12 +54,12 @@ def form_update_post(res_GameNumber):
     return redirect("/", code=302)
 
 
-@app.route('/Snakes_Ladders/new', methods=['GET'])
+@app.route('/results/new', methods=['GET'])
 def form_insert_get():
     return render_template('new.html', title='New')
 
 
-@app.route('/Snakes_Ladders/new', methods=['POST'])
+@app.route('/results/new', methods=['POST'])
 def form_insert_post():
     cursor = mysql.get_db().cursor()
     inputData = (request.form.get('GameNumber'), request.form.get('GameLength'))
@@ -78,7 +78,7 @@ def form_delete_post(res_GameNumber):
     return redirect("/", code=302)
 
 
-@app.route('/api/v1/Snakes_Ladders', methods=['GET'])
+@app.route('/api/v1/results', methods=['GET'])
 def api_browse() -> str:
     cursor = mysql.get_db().cursor()
     cursor.execute('SELECT * FROM tblsnldImport')
@@ -88,7 +88,7 @@ def api_browse() -> str:
     return resp
 
 
-@app.route('/api/v1/Snakes_Ladders/<int:res_GameNumber>', methods=['GET'])
+@app.route('/api/v1/results/<int:res_GameNumber>', methods=['GET'])
 def api_retrieve(res_GameNumber) -> str:
     cursor = mysql.get_db().cursor()
     cursor.execute('SELECT * FROM tblsnldImport WHERE GameNumber=%s',res_GameNumber)
@@ -98,19 +98,19 @@ def api_retrieve(res_GameNumber) -> str:
     return resp
 
 
-@app.route('/api/v1/Snakes_Ladders/', methods=['POST'])
+@app.route('/api/v1/results/', methods=['POST'])
 def api_add() -> str:
     resp = Response(status=201, mimetype='application/json')
     return resp
 
 
-@app.route('/api/v1/Snakes_Ladders/<int:res_GameNumber>', methods=['PUT'])
+@app.route('/api/v1/results/<int:res_GameNumber>', methods=['PUT'])
 def api_edit(res_GameNumber) -> str:
     resp = Response(status=201, mimetype='application/json')
     return resp
 
 
-@app.route('/api/v1/Snakes_Ladders/<int:res_GameNumber>', methods=['DELETE'])
+@app.route('/api/v1/results/<int:res_GameNumber>', methods=['DELETE'])
 def api_delete(res_GameNumber) -> str:
     cursor = mysql.get_db().cursor()
     sql_delete_query = """DELETE FROM tblsnldImport WHERE GameNumber = %s """

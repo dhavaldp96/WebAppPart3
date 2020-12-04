@@ -5,9 +5,10 @@
     <tr>
         <th scope="col">Game Number</th>
         <th scope="col">Game Length</th>
+    </tr>
     </thead>
     <tbody>
-    {% for res in result %}
+    {% for res in results %}
     <tr>
         <td><a href="view/{{res.GameNumber}}">{{ res.GameNumber }}</a></td>
         <td>{{ res.GameLength }}</td>

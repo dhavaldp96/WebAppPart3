@@ -5,11 +5,11 @@
     <h5 class="card-title">{{ res.GameNumber }} - {{ res.GameLength }}</h5>
 
     <ul class="list-group list-group-flush">
-        <li class="list-group-item">{{ res.GameNumber }}</li>
-        <li class="list-group-item">{{ res.GameLength }}</li>
+        <li class="list-group-item">Game Number: {{ res.GameNumber }}</li>
+        <li class="list-group-item">Game Length: {{ res.GameLength }}</li>
     </ul>
     <div class="card-body">
-        <a href="/edit/{{res.GameNumber}}" class="card-link btn btn-primary">edit</a>
+        <a href="/edit/{{res.GameNumber}}" class="card-link btn btn-primary">Edit</a>
     </div>
 </div>
 <form action="/delete/{{res.GameNumber}}" method="post"><button type="submit" class="btn btn-danger">Save</button></form>
