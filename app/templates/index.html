@@ -7,15 +7,10 @@
         <th scope="col">Game Length</th>
     </thead>
     <tbody>
-    {% for city in cities %}
+    {% for res in result %}
     <tr>
-        <td><a href="view/{{city.id}}">{{ city.fldName }}</a></td>
-        <td>{{ city.fldLat }}</td>
-        <td>{{ city.fldLong }}</td>
-        <td>{{ city.fldCountry }}</td>
-        <td>{{ city.fldAbbreviation }}</td>
-        <td>{{ city.fldCapitalStatus }}</td>
-        <td>{{ city.fldPopulation }}</td>
+        <td><a href="view/{{res.GameNumber}}">{{ res.GameNumber }}</a></td>
+        <td>{{ res.GameLength }}</td>
     </tr>
     {% endfor %}
     </tbody>
