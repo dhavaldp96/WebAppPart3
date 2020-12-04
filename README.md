@@ -2,4 +2,4 @@
 
 *This project is a homework assignment to teach how to get Pycharm setup with Docker, Flask, MySQL, and Postman.*
 
-![db_screenshot](screenshots/databasewebapppart3.PNG)
+Please click [here](The%20Document%20of%20Final%20Result.docx) for final document with screenshots.
