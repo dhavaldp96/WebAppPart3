@@ -40,7 +40,7 @@ def form_edit_get(res_GameNumber):
     cursor = mysql.get_db().cursor()
     cursor.execute('SELECT * FROM tblsnldImport WHERE GameNumber=%s', res_GameNumber)
     result = cursor.fetchall()
-    print(result[1])
+    print(result[0])
     return render_template('edit.html', title='Edit Form', res=result[0])
 
 
